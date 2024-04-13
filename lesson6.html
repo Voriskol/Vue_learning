@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Экземпляры приложения и компонента</title>
+  </head>
+  <body>
+    <a href="https://vueframework.com/docs/v3/ru/ru/guide/instance.html"
+      >Документация</a
+    >
+
+    <div id="app"></div>
+
+    <script src="js/vue.global.js"></script>
+    <script>
+      const RootComponent = {
+        // Опции корневого компонента
+        // НАпример methods, props, computed, inject и setup
+        data() {
+          // свойство
+          return {
+            count: 1,
+          };
+        },
+        beforeCreate() {
+            // код здесь будет выполняться перед созданием экземпляра
+
+        },
+        created() {
+          // хук жизненного цикла, например: mounted, updated, unmounted
+          // this указывает на экземпляр vm
+          console.log(`счетчик: ${this.count}`);
+        },
+      };
+
+      const app = Vue.createApp(RootComponent);
+      const vm = app.mount("#app"); // Сокращение от ViewModel
+      console.log(vm.count);
+    </script>
+  </body>
+</html>

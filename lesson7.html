@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Экземпляры приложения и компонента</title>
+  </head>
+  <body>
+    <a v-bind:href="url">Документация</a>
+
+    <div id="example1" class="demo">
+      <a v-bind:href="url">Документация</a>
+      <!-- Текстовая интерполяция с использованием Mustache-синтаксиса из двойных фигурных скобок -->
+      <p>Сообщение: {{ msg }}</p>
+      <p v-once>Это сообщение никогда не изменится: {{ msg }}</p>
+      <!-- Значение выражения в двойных фигурных скобках обрабатывается как обычный текст а не как HTML -->
+      <p>Двойные фигурные скобки: {{rawHtml}}</p>
+      <p>Директива v-html: <span v-html="rawHtml"></span></p>
+
+      <!-- Синтаксис двойных фигурных скобок нельзя использовать внутри HTML-атрибутов. Вместо него следует использовать директиву 
+        v-bind -->
+      <div v-bind:id="dynamicId">1</div>
+
+      <button  v-bind:disabled="isButtonDisabled">
+        Кнопка
+      </button>
+      <p v-if="seen">Сейчас меня видно</p>
+
+      <!-- Vue поддерживает всю мощь выражений JS внутри привязки к данным -->
+      <p>{{number+1}}</p>
+      <p>{{ok ? 'YES' : 'NO'}}</p>
+      <p>{{message.split('').reverse().join('')}}</p>
+      <div v-bind:id="'list-' + id">5</div>
+
+      <!-- Сокращенная запись v-bind -->
+      <a :href="url">...</a>
+      <!-- @ - Сокращенная запись v-on -->
+      <a @click="doSomething"> ... </a>
+    </div>
+
+    <script src="js/vue.global.js"></script>
+    <script>
+      const RenderHtmlApp = {
+        data() {
+          return {
+            msg: "Hello, world",
+            rawHtml: '<span style="color: red">This should be red.</span>',
+            dynamicId: 1,
+            url: "https://vueframework.com/docs/v3/ru/ru/guide/instance.html",
+            seen: true,
+            isButtonDisabled: false,
+            number: 3,
+            ok: false,
+            message: "Vue",
+            id: 5,
+          };
+        },
+      };
+
+      const app = Vue.createApp(RenderHtmlApp);
+      app.mount("#example1");
+    </script>
+  </body>
+</html>
