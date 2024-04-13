@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Vue learning</title>
+  </head>
+  <body>
+    <div id="counter" class="demo">Counter: {{counter}}</div>
+
+    <!-- Директива v-bind -->
+    <div id="bind-attribute" class="demo">
+      <span v-bind:title="message">
+        Наведи на меня курсор на пару секунд, чтобы увидеть динамически
+        связанное значение title!
+      </span>
+    </div>
+    <!-- Диреткива v-on -->
+    <div id="event-handling" class="demo">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">Перевернуть сообщение</button>
+      <button v-on:click="textToUpperCase">Увеличить буквы</button>
+      <button v-on:click="textToLowerCase">Уменьшить буквы</button>
+    </div>
+    <!-- Директива v-model -->
+    <div id="two-way-binding" class="demo">
+      <p>{{message}}</p>
+      <input v-model="message" />
+    </div>
+
+    <!-- Директива v-if -->
+    <div id="conditional-rendering" class="demo">
+      <span v-if="seen">Сейчас меня видно</span>
+    </div>
+
+    <!-- Директива v-for -->
+    <div id="list-rendering" class="demo">
+      <ol>
+        <li v-for="todo in todos">{{todo.text}}, мой уровень {{todo.level}}</li>
+      </ol>
+    </div>
+
+    <script src="js/vue.global.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
