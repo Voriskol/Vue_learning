@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Работа с классами и стилями</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="awesome">Директива v-if</h1>
+      <h1 v-else>awesome = false</h1>
+
+      <!-- Отлчиче в том что элемент с ви шоу будет всегда отрисовываться и оставаться в ДОМ а переключаться будет лишь его CSS свойство display
+        v-show нельзя использовать на элементе <template> и она не работает с v-else -->
+
+      <h1 v-show="awesome">директива V-show</h1>
+
+      <template v-if="ok">
+        <h1>Заголовок</h1>
+        <p>абзац 1</p>
+        <p>абзац 2</p>
+      </template>
+
+      <div v-if="type === 'A'">A</div>
+      <div v-else-if="type === 'B'">B</div>
+      <div v-else-if="type === 'C'">C</div>
+      <div v-else>Точно не А, B или C</div>
+
+    </div>
+
+    <script src="js/vue.global.js"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            awesome: true,
+            ok: true,
+            type: "C",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вычисляемые свойства</title>
+  </head>
+  <body>
+    <div id="computed-basics">
+      <p>Есть опубликованные книги:</p>
+      <span>{{ calculatedBooksMessage() }}</span>
+    </div>
+
+    <script src="js/vue.global.js"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            author: {
+              name: "John Doe",
+              books: [
+                "Vue 2 - Advanced Guide",
+                "Vue 3 - Basic Guide",
+                "Vue 4 - The Mystery",
+              ],
+            },
+          };
+        },
+        computed: {
+          // Сюда заносятся вычисляемые свойства
+          // Они сохраняются в кэше и не вычисляются заново пока не произойдет изменение данных
+          // для сложной логики, включающей реактивные данные, следует использовать вычисляемые свойства.
+          publishedBooksMessage() {
+            return this.author.books.length > 0 ? "Да" : "Нет";
+          },
+        },
+        methods: {
+          // Методы не кэшируются поэтому всегда будут вычисляться при любом изменении страницы, что приводит к засорению
+          calculatedBooksMessage() {
+            return this.author.books.length > 0 ? "Да" : "Нет";
+          },
+        },
+      }).mount("#computed-basics");
+    </script>
+  </body>
+</html>
